@@ -1,0 +1,14 @@
+.navBarLink {
+  margin: 5px;
+  text-decoration: none;
+  padding: 10px 10px;
+  text-align: center;
+}
+.menu-navbar {
+  justify-content: center;
+  color: grey;
+  background-color: lightgrey;
+}
+.menu-navbar > .nav-item {
+  margin: 10px;
+}
