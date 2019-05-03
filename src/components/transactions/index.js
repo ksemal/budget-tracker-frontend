@@ -1,23 +1,35 @@
 import React, { Component } from "react";
-// import { selectTransaction } from "../../actions";
+import { connect } from "react-redux";
+import { removeTransaction, getTransactions } from "../../actions";
+
+import Badge from "react-bootstrap/Badge";
+
+import "./style.css";
 
 class TransactionList extends Component {
   componentDidUpdate() {}
+  componentDidMount() {
+    this.props.getTransactions();
+  }
 
   render() {
-    return this.props.transactionList
-      ? this.props.transactionList.map(item => {
+    return this.props.allTransactions
+      ? this.props.allTransactions.map(item => {
           return (
             <div key={item.id}>
-              {item.amount} from {item.wallet_id} date: {item.created_at}
-              {/* <button onClick={() => this.props.selectTransaction(item)}>
-                Select
-              </button> */}
-              {/* {this.props.selected && item.name === this.props.selected.name ? (
-            <Details />
-          ) : (
-            ""
-          )} */}
+              <span>
+                {item.amount}$ from {item.wallet.name} date: {item.datetime}{" "}
+                Category:{" "}
+                <Badge pill variant="info">
+                  {item.category.name}
+                </Badge>
+              </span>
+              <span
+                className="remove-transaction"
+                onClick={() => this.props.removeTransaction(item.id)}
+              >
+                <i className="far fa-times-circle" />
+              </span>
             </div>
           );
         })
@@ -25,4 +37,12 @@ class TransactionList extends Component {
   }
 }
 
-export default TransactionList;
+const mapStateToProps = state => {
+  return state;
+};
+const mapDispatchToProps = { removeTransaction, getTransactions };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TransactionList);

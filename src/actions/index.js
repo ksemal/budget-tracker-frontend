@@ -1,26 +1,5 @@
 import API from "../utils/API";
-
 import history from "../history";
-
-// export const selectTransaction = transaction => {
-//   return {
-//     type: "SELECT_TRANSACTION",
-//     payload: transaction
-//   };
-// };
-
-export const getTransactions = () => {
-  return function(dispatch, getState) {
-    API.getTransactions().then(
-      response => {
-        dispatch({ type: "GET_TRANSACTIONS", payload: response.data });
-      },
-      err => {
-        dispatch({ type: "GET_TRANSACTIONS", payload: err });
-      }
-    );
-  };
-};
 
 // Landing Page Actions
 export const handleSignInUpInput = (name, value) => {
@@ -90,5 +69,114 @@ export const signOut = state => {
   return {
     type: "CLEAR_TOKEN",
     payload: ""
+  };
+};
+
+//Transactions actions
+
+export const getTransactions = () => {
+  return function(dispatch, getState) {
+    API.getTransactions().then(
+      response => {
+        dispatch({ type: "GET_TRANSACTIONS", payload: response.data });
+      },
+      err => {
+        dispatch({ type: "GET_TRANSACTIONS", payload: err });
+      }
+    );
+  };
+};
+
+export const removeTransaction = id => {
+  return function(dispatch, getState) {
+    API.removeTransaction(id).then(
+      response => {
+        let state = getState().allTransactions.filter(
+          element => element.id !== id
+        );
+        API.getWallets().then(
+          response => {
+            dispatch({ type: "GET_WALLETS", payload: response.data });
+            dispatch({ type: "REMOVE_TRANSACTION", payload: state });
+          },
+          err => {
+            dispatch({ type: "GET_TRANSACTIONS", payload: err });
+          }
+        );
+      },
+      err => {
+        dispatch({ type: "REMOVE_TRANSACTION", payload: err });
+      }
+    );
+  };
+};
+//Wallets actions
+
+export const getWallets = () => {
+  return function(dispatch, getState) {
+    API.getWallets().then(
+      response => {
+        dispatch({ type: "GET_WALLETS", payload: response.data });
+      },
+      err => {
+        dispatch({ type: "GET_WALLETS", payload: err });
+      }
+    );
+  };
+};
+
+export const addWallet = (name, total) => {
+  const newWallet = {
+    wallet: {
+      name,
+      total
+    }
+  };
+  return function(dispatch, getState) {
+    API.addWallet(newWallet).then(
+      response => {
+        let updatedState = [...getState().wallets, response.data];
+        dispatch({ type: "ADD_WALLET", payload: updatedState });
+      },
+      err => {
+        dispatch({ type: "ADD_WALLET", payload: err });
+      }
+    );
+  };
+};
+export const removeWallet = id => {
+  return function(dispatch, getState) {
+    API.removeWallet(id).then(
+      response => {
+        let state = getState().wallets.filter(element => element.id !== id);
+        API.getTransactions().then(
+          response => {
+            dispatch({ type: "REMOVE_WALLET", payload: state });
+            dispatch({ type: "GET_TRANSACTIONS", payload: response.data });
+          },
+          err => {
+            dispatch({ type: "GET_TRANSACTIONS", payload: err });
+          }
+        );
+      },
+      err => {
+        dispatch({ type: "REMOVE_WALLET", payload: err });
+      }
+    );
+  };
+};
+
+// Categories actions
+export const getCategories = () => {
+  return function(dispatch, getState) {
+    API.getCategories().then(
+      response => {
+        console.log(response.data);
+        dispatch({ type: "GET_CATEGORIES", payload: response.data });
+      },
+      err => {
+        dispatch({ type: "GET_CATEGORIES", payload: err });
+      }
+    );
   };
 };

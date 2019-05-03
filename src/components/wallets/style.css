@@ -1,0 +1,15 @@
+.fa-times-circle {
+  float: right;
+}
+.cardWrapper {
+  display: flex;
+  column-count: 3;
+  flex-wrap: wrap;
+}
+.cardWrapper > div {
+  width: 31%;
+  margin: 5px;
+}
+.fa-wallet {
+  font-size: 18px;
+}

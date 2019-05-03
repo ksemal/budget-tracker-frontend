@@ -24,13 +24,6 @@ import { combineReducers } from "redux";
 //   return selectedTransaction;
 // };
 
-const getTransactionsReducer = (state = null, action) => {
-  if (action.type === "GET_TRANSACTIONS") {
-    return action.payload;
-  }
-  return state;
-};
-
 // Landing Page Reducers
 const signInUpInputReducer = (state = null, action) => {
   if (action.type === "UPDATE_SIGNIN/UP_INPUT") {
@@ -58,10 +51,47 @@ const signUserErrorReducer = (state = null, action) => {
   }
   return state;
 };
+// Transactions reducers
+
+const getTransactionsReducer = (state = null, action) => {
+  if (action.type === "GET_TRANSACTIONS") {
+    return action.payload;
+  }
+  if (action.type === "REMOVE_TRANSACTION") {
+    return action.payload;
+  }
+  return state;
+};
+// Wallets reducers
+const getWalletsReducer = (state = null, action) => {
+  if (action.type === "GET_WALLETS") {
+    return action.payload;
+  }
+  if (action.type === "ADD_WALLET") {
+    return action.payload;
+  }
+  if (action.type === "REMOVE_WALLET") {
+    return action.payload;
+  }
+  return state;
+};
+
+// Categories reducers
+const getCategoriesReducer = (state = null, action) => {
+  if (action.type === "GET_CATEGORIES") {
+    return action.payload;
+  }
+  if (action.type === "GET_CATEGORIES") {
+    return action.payload;
+  }
+  return state;
+};
 
 export default combineReducers({
   allTransactions: getTransactionsReducer,
   userCredentials: signInUpInputReducer,
   userToken: createCheckUserReducer,
-  signError: signUserErrorReducer
+  signError: signUserErrorReducer,
+  wallets: getWalletsReducer,
+  categories: getCategoriesReducer
 });
