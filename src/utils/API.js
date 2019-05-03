@@ -31,5 +31,11 @@ export default {
   },
   getCategories: function() {
     return axios.get(API_URL + "categories");
+  },
+  addCategory: function(category) {
+    return axios.post(API_URL + "categories", category);
+  },
+  removeCategory: function(id) {
+    return axios.delete(API_URL + "categories/" + id);
   }
 };

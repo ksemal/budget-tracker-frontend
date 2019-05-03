@@ -81,9 +81,13 @@ const getCategoriesReducer = (state = null, action) => {
   if (action.type === "GET_CATEGORIES") {
     return action.payload;
   }
-  if (action.type === "GET_CATEGORIES") {
+  if (action.type === "ADD_CATEGORY") {
     return action.payload;
   }
+  if (action.type === "REMOVE_CATEGORY") {
+    return action.payload;
+  }
+
   return state;
 };
 

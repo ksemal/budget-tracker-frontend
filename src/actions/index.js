@@ -171,11 +171,45 @@ export const getCategories = () => {
   return function(dispatch, getState) {
     API.getCategories().then(
       response => {
-        console.log(response.data);
         dispatch({ type: "GET_CATEGORIES", payload: response.data });
       },
       err => {
         dispatch({ type: "GET_CATEGORIES", payload: err });
+      }
+    );
+  };
+};
+
+export const addNewCategory = name => {
+  return function(dispatch, getState) {
+    let newCategory = {
+      category: {
+        name: name
+      }
+    };
+
+    API.addCategory(newCategory).then(
+      response => {
+        let updatedCategories = [...getState().categories, response.data];
+        console.log(updatedCategories);
+        dispatch({ type: "ADD_CATEGORY", payload: updatedCategories });
+      },
+      err => {
+        dispatch({ type: "ADD_CATEGORY", payload: err });
+      }
+    );
+  };
+};
+
+export const removeCategory = id => {
+  return function(dispatch, getState) {
+    API.removeCategory(id).then(
+      response => {
+        let state = getState().categories.filter(element => element.id !== id);
+        dispatch({ type: "REMOVE_CATEGORY", payload: state });
+      },
+      err => {
+        dispatch({ type: "REMOVE_CATEGORY", payload: err });
       }
     );
   };
