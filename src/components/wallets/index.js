@@ -24,7 +24,8 @@ class WalletList extends Component {
   }
   openNewTransactionForm(id) {
     this.setState({
-      toggleNewTransaction: true
+      toggleNewTransaction: true,
+      wallet_id: id
     });
   }
   componentDidMount() {
@@ -61,7 +62,13 @@ class WalletList extends Component {
                         >
                           <i
                             className="far fa-times-circle"
-                            onClick={() => this.props.removeWallet(wallet.id)}
+                            onClick={() => {
+                              this.props.removeWallet(wallet.id);
+                              this.setState({
+                                wallet_id: null,
+                                toggleNewTransaction: false
+                              });
+                            }}
                           />
                         </OverlayTrigger>
                       </small>
@@ -91,7 +98,7 @@ class WalletList extends Component {
                   </Card.Body>
                 </Card>
               ))
-            : ""}
+            : "Add your first wallet"}
           <Card>
             <Card.Body>
               <Card.Title>

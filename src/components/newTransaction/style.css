@@ -1,3 +1,9 @@
 .newTransaction {
-  margin-top: 2rem;
+  margin: 3rem 0;
+}
+.clickedCategory {
+  background-color: grey;
+}
+#switch {
+  width: 30px;
 }

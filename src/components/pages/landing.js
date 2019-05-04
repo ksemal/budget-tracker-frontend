@@ -9,6 +9,8 @@ import Col from "react-bootstrap/Col";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 
+import CarouselComponent from "../carousel";
+
 import {
   handleSignInUpInput,
   handleSignUpSubmit,
@@ -36,8 +38,9 @@ class LandingPage extends Component {
   render() {
     return (
       <Row>
-        <Col sm={{ span: 4, offset: 4 }} className="mb-5">
+        <Col sm={{ span: 12 }} className="mb-5">
           <h1>Welcome to your Budget Tracker App</h1>
+          <CarouselComponent />
         </Col>
         <Col sm={{ span: 4, offset: 4 }}>
           <Tabs defaultActiveKey="SignIn">

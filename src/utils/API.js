@@ -8,14 +8,17 @@ axios.defaults.headers = {
 };
 
 export default {
-  getTransactions: function() {
-    return axios.get(API_URL + "transactions");
-  },
   createUser: function(data) {
     return axios.post(API_URL + "users/create", data);
   },
   checkUser: function(data) {
     return axios.post(API_URL + "user_token", data);
+  },
+  getTransactions: function() {
+    return axios.get(API_URL + "transactions");
+  },
+  addTransaction: function(transaction) {
+    return axios.post(API_URL + "transactions/", transaction);
   },
   removeTransaction: function(id) {
     return axios.delete(API_URL + "transactions/" + id);

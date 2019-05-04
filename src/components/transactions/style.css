@@ -1,3 +1,9 @@
-.remove-transaction {
+.smallButtons {
   float: right;
+}
+.in {
+  color: rgb(93, 182, 155);
+}
+.out {
+  color: rgb(221, 147, 50);
 }

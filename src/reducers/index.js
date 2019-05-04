@@ -60,6 +60,9 @@ const getTransactionsReducer = (state = null, action) => {
   if (action.type === "REMOVE_TRANSACTION") {
     return action.payload;
   }
+  if (action.type === "ADD_TRANSACTION") {
+    return action.payload;
+  }
   return state;
 };
 // Wallets reducers
@@ -91,11 +94,19 @@ const getCategoriesReducer = (state = null, action) => {
   return state;
 };
 
+const confirmationReducer = (state = null, action) => {
+  if (action.type === "TRANSACTION_ADDED") {
+    return action.payload;
+  }
+  return false;
+};
+
 export default combineReducers({
   allTransactions: getTransactionsReducer,
   userCredentials: signInUpInputReducer,
   userToken: createCheckUserReducer,
   signError: signUserErrorReducer,
   wallets: getWalletsReducer,
-  categories: getCategoriesReducer
+  categories: getCategoriesReducer,
+  transactionAdded: confirmationReducer
 });

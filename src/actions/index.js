@@ -95,17 +95,52 @@ export const removeTransaction = id => {
           element => element.id !== id
         );
         API.getWallets().then(
-          response => {
-            dispatch({ type: "GET_WALLETS", payload: response.data });
+          wallets => {
+            dispatch({ type: "GET_WALLETS", payload: wallets.data });
             dispatch({ type: "REMOVE_TRANSACTION", payload: state });
           },
           err => {
-            dispatch({ type: "GET_TRANSACTIONS", payload: err });
+            dispatch({ type: "GET_WALLETS", payload: err });
           }
         );
       },
       err => {
         dispatch({ type: "REMOVE_TRANSACTION", payload: err });
+      }
+    );
+  };
+};
+
+export const addTransaction = (wallet, amount, category, notes, datetime) => {
+  return function(dispatch, getState) {
+    let transaction = {
+      transaction: {
+        wallet_id: wallet,
+        amount: amount,
+        category_id: category,
+        notes: notes,
+        datetime: datetime
+      }
+    };
+    API.addTransaction(transaction).then(
+      transaction => {
+        let state = [...getState().allTransactions, transaction.data];
+        API.getWallets().then(
+          wallets => {
+            dispatch({ type: "GET_WALLETS", payload: wallets.data });
+            dispatch({ type: "ADD_TRANSACTION", payload: state });
+            dispatch({
+              type: "TRANSACTION_ADDED",
+              payload: "New transaction has been added"
+            });
+          },
+          err => {
+            dispatch({ type: "GET_WALLETS", payload: err });
+          }
+        );
+      },
+      err => {
+        dispatch({ type: "TRANSACTION_ADDED", payload: err });
       }
     );
   };
