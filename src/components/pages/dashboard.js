@@ -36,8 +36,7 @@ class Dashboard extends Component {
         </Row>
         <Row>
           <Col sm={{ span: 4, offset: 1 }}>
-            <h5>My last 20 transactions</h5>
-            <TransactionList allTransactions={this.props.transactionList} />
+            <TransactionList />
           </Col>
           <Col sm={{ span: 5, offset: 1 }}>
             <Row>

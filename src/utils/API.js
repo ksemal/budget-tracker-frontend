@@ -14,8 +14,10 @@ export default {
   checkUser: function(data) {
     return axios.post(API_URL + "user_token", data);
   },
-  getTransactions: function() {
-    return axios.get(API_URL + "transactions");
+  getTransactions: function(date) {
+    return axios.get(API_URL + "transactions", {
+      params: date
+    });
   },
   addTransaction: function(transaction) {
     return axios.post(API_URL + "transactions/", transaction);

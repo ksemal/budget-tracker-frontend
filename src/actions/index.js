@@ -74,9 +74,9 @@ export const signOut = state => {
 
 //Transactions actions
 
-export const getTransactions = () => {
+export const getTransactions = date => {
   return function(dispatch, getState) {
-    API.getTransactions().then(
+    API.getTransactions(date).then(
       response => {
         dispatch({ type: "GET_TRANSACTIONS", payload: response.data });
       },
@@ -100,12 +100,12 @@ export const removeTransaction = id => {
             dispatch({ type: "REMOVE_TRANSACTION", payload: state });
           },
           err => {
-            dispatch({ type: "GET_WALLETS", payload: err });
+            dispatch({ type: "GET_WALLETS_ERR", payload: err });
           }
         );
       },
       err => {
-        dispatch({ type: "REMOVE_TRANSACTION", payload: err });
+        dispatch({ type: "REMOVE_TRANSACTION_ERR", payload: err });
       }
     );
   };
@@ -154,7 +154,7 @@ export const getWallets = () => {
         dispatch({ type: "GET_WALLETS", payload: response.data });
       },
       err => {
-        dispatch({ type: "GET_WALLETS", payload: err });
+        dispatch({ type: "GET_WALLETS_ERR", payload: err });
       }
     );
   };

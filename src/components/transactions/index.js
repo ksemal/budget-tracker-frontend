@@ -10,13 +10,29 @@ import Button from "react-bootstrap/Button";
 
 import "./style.css";
 
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
+
 class TransactionList extends Component {
   state = {
-    showNotes: ""
+    showNotes: "",
+    title: "Here are your last 20 transactions"
   };
   componentDidUpdate() {}
   componentDidMount() {
-    this.props.getTransactions();
+    this.props.getTransactions({ last: 20 });
   }
   showNotes(id) {
     this.state.showNotes
@@ -31,17 +47,57 @@ class TransactionList extends Component {
   render() {
     return (
       <div>
+        <h5>{this.state.title}</h5>
         <ButtonGroup>
-          <Button>last 20</Button>
-          <Button>last week</Button>
-          <Button>last month</Button>
+          <Button
+            onClick={() => {
+              this.props.getTransactions();
+              this.setState({ title: "All the transactions" });
+            }}
+          >
+            All
+          </Button>
+          <Button
+            onClick={() => {
+              this.props.getTransactions({ last: 20 });
+              this.setState({ title: "Here are your last 20 transactions" });
+            }}
+          >
+            Last 20
+          </Button>
+          <Button
+            onClick={() => {
+              this.props.getTransactions({ daterange: "week" });
+              this.setState({ title: "Transactions for this week" });
+            }}
+          >
+            This Week
+          </Button>
+          <Button
+            onClick={() => {
+              this.props.getTransactions({ daterange: "month" });
+              this.setState({ title: "Transactions for this month" });
+            }}
+          >
+            This Month
+          </Button>
           <DropdownButton
             as={ButtonGroup}
-            title="Dropdown"
+            title="Choose a month"
             id="bg-nested-dropdown"
           >
-            <Dropdown.Item eventKey="1">Dropdown link</Dropdown.Item>
-            <Dropdown.Item eventKey="2">Dropdown link</Dropdown.Item>
+            {months.map((month, i) => (
+              <Dropdown.Item
+                key={i + 1}
+                eventKey={i + 1}
+                onClick={() => {
+                  this.props.getTransactions({ daterange: i + 1 });
+                  this.setState({ title: month + "'s transactions" });
+                }}
+              >
+                {month}
+              </Dropdown.Item>
+            ))}
           </DropdownButton>
         </ButtonGroup>
         {this.props.allTransactions
