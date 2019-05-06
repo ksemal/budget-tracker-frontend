@@ -7,3 +7,18 @@
 .out {
   color: rgb(221, 147, 50);
 }
+.transaction-menu > button,
+.dropdown-toggle {
+  background: white;
+  color: #ffc56f;
+  border: none;
+}
+.button_tr:hover,
+#bg-nested-dropdown:hover {
+  background: orange;
+}
+
+.button_tr:focus,
+#bg-nested-dropdown:focus {
+  box-shadow: 0 0 0 0.2rem rgba(255, 186, 38, 0.5);
+}

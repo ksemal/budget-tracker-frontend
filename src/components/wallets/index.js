@@ -85,13 +85,15 @@ class WalletList extends Component {
                             </Tooltip>
                           }
                         >
-                          <i
-                            className="far fa-money-bill-alt"
-                            onClick={() => {
-                              this.changeColor(wallet.id);
-                              this.openNewTransactionForm(wallet.id);
-                            }}
-                          />
+                          <span className="smbutton-wr">
+                            <i
+                              className="far fa-money-bill-alt"
+                              onClick={() => {
+                                this.changeColor(wallet.id);
+                                this.openNewTransactionForm(wallet.id);
+                              }}
+                            />
+                          </span>
                         </OverlayTrigger>
                       </small>
                     </Card.Text>
@@ -103,21 +105,30 @@ class WalletList extends Component {
             <Card.Body>
               <Card.Title>
                 <small>Add a wallet</small>
-                <OverlayTrigger
-                  key="tooltip"
-                  placement="right"
-                  overlay={<Tooltip id="newWallet">Add a wallet</Tooltip>}
-                >
-                  <i
-                    className="fas fa-wallet"
-                    onClick={() =>
-                      this.addWallet(
-                        this.state.wallet_name,
-                        this.state.wallet_total
-                      )
-                    }
-                  />
-                </OverlayTrigger>
+
+                {this.state.wallet_name && this.state.wallet_total ? (
+                  <OverlayTrigger
+                    key="tooltip"
+                    placement="right"
+                    overlay={<Tooltip id="newWallet">Add a wallet</Tooltip>}
+                  >
+                    <i
+                      className="fas fa-wallet"
+                      onClick={() => {
+                        this.addWallet(
+                          this.state.wallet_name,
+                          this.state.wallet_total
+                        );
+                        this.setState({
+                          wallet_name: "",
+                          wallet_total: ""
+                        });
+                      }}
+                    />
+                  </OverlayTrigger>
+                ) : (
+                  ""
+                )}
               </Card.Title>
               <Form>
                 <Row>
@@ -126,11 +137,13 @@ class WalletList extends Component {
                       placeholder="Wallet name"
                       name="wallet_name"
                       onChange={this.handleNewWalletInput}
+                      value={this.state.wallet_name || ""}
                     />
                     <Form.Control
                       placeholder="Total"
                       name="wallet_total"
                       onChange={this.handleNewWalletInput}
+                      value={this.state.wallet_total || ""}
                     />
                   </Col>
                 </Row>

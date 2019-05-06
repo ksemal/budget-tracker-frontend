@@ -96,8 +96,11 @@ export const removeTransaction = id => {
         );
         API.getWallets().then(
           wallets => {
-            dispatch({ type: "GET_WALLETS", payload: wallets.data });
-            dispatch({ type: "REMOVE_TRANSACTION", payload: state });
+            API.getSummary().then(statistic => {
+              dispatch({ type: "GET_SUMMARY", payload: statistic.data });
+              dispatch({ type: "GET_WALLETS", payload: wallets.data });
+              dispatch({ type: "REMOVE_TRANSACTION", payload: state });
+            });
           },
           err => {
             dispatch({ type: "GET_WALLETS_ERR", payload: err });
@@ -127,11 +130,14 @@ export const addTransaction = (wallet, amount, category, notes, datetime) => {
         let state = [...getState().allTransactions, transaction.data];
         API.getWallets().then(
           wallets => {
-            dispatch({ type: "GET_WALLETS", payload: wallets.data });
-            dispatch({ type: "ADD_TRANSACTION", payload: state });
-            dispatch({
-              type: "TRANSACTION_ADDED",
-              payload: "New transaction has been added"
+            API.getSummary().then(statistic => {
+              dispatch({ type: "GET_SUMMARY", payload: statistic.data });
+              dispatch({ type: "GET_WALLETS", payload: wallets.data });
+              dispatch({ type: "ADD_TRANSACTION", payload: state });
+              dispatch({
+                type: "TRANSACTION_ADDED",
+                payload: "New transaction has been added"
+              });
             });
           },
           err => {
@@ -171,7 +177,10 @@ export const addWallet = (name, total) => {
     API.addWallet(newWallet).then(
       response => {
         let updatedState = [...getState().wallets, response.data];
-        dispatch({ type: "ADD_WALLET", payload: updatedState });
+        API.getSummary().then(statistic => {
+          dispatch({ type: "GET_SUMMARY", payload: statistic.data });
+          dispatch({ type: "ADD_WALLET", payload: updatedState });
+        });
       },
       err => {
         dispatch({ type: "ADD_WALLET", payload: err });
@@ -185,9 +194,15 @@ export const removeWallet = id => {
       response => {
         let state = getState().wallets.filter(element => element.id !== id);
         API.getTransactions().then(
-          response => {
-            dispatch({ type: "REMOVE_WALLET", payload: state });
-            dispatch({ type: "GET_TRANSACTIONS", payload: response.data });
+          transactions => {
+            API.getSummary().then(statistic => {
+              dispatch({ type: "GET_SUMMARY", payload: statistic.data });
+              dispatch({ type: "REMOVE_WALLET", payload: state });
+              dispatch({
+                type: "GET_TRANSACTIONS",
+                payload: transactions.data
+              });
+            });
           },
           err => {
             dispatch({ type: "GET_TRANSACTIONS", payload: err });
@@ -245,6 +260,21 @@ export const removeCategory = id => {
       },
       err => {
         dispatch({ type: "REMOVE_CATEGORY", payload: err });
+      }
+    );
+  };
+};
+
+// Statistic actions
+
+export const getSummary = () => {
+  return function(dispatch, getState) {
+    API.getSummary().then(
+      statistic => {
+        dispatch({ type: "GET_SUMMARY", payload: statistic.data });
+      },
+      err => {
+        dispatch({ type: "GET_SUMMARY_ERR", payload: err });
       }
     );
   };

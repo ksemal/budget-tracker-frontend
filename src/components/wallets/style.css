@@ -11,5 +11,21 @@
   margin: 5px;
 }
 .fa-wallet {
-  font-size: 18px;
+  font-size: 20px;
+}
+.fa-money-bill-alt {
+  font-size: 15px;
+  text-align: center;
+  position: relative;
+  color: white;
+  top: 25%;
+}
+.smbutton-wr {
+  text-align: center;
+  background: linear-gradient(40deg, #ffd86f, #fc6262) !important;
+  border-radius: 10em;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  width: 35px;
+  height: 35px;
+  position: absolute;
 }

@@ -7,47 +7,39 @@ import Col from "react-bootstrap/Col";
 
 import TransactionList from "../transactions";
 import WalletList from "../wallets";
-
-import ProgressBar from "react-bootstrap/ProgressBar";
+import DashboardStatistic from "../dashboardStatistic";
 
 import "./style.css";
 
 class Dashboard extends Component {
   render() {
     return (
-      <div>
-        <Navbar />
-        <h1>Dashboard</h1>
-        <Row>
-          <Col sm={{ span: 10, offset: 1 }}>
-            <ProgressBar
-              animated
-              striped
-              variant="warning"
-              label={this.props.expenses + " : my total expenses"}
-              max="100"
-              now={35}
-              key={1}
-            />
-            <span className="budget-lable">
-              My budget this month: {this.props.budget}
-            </span>
-          </Col>
-        </Row>
-        <Row>
-          <Col sm={{ span: 4, offset: 1 }}>
-            <TransactionList />
-          </Col>
-          <Col sm={{ span: 5, offset: 1 }}>
-            <Row>
-              <Col sm={{ span: 12 }}>
-                <h5>My wallets</h5>
-                <WalletList />
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </div>
+      <Row className="wrapper">
+        <Col sm={{ span: 1 }}>
+          <Navbar />
+        </Col>
+        <Col sm={{ span: 11 }}>
+          <Row>
+            <Col sm={{ span: 10, offset: 1 }}>
+              <h1>Dashboard</h1>
+              <DashboardStatistic />
+            </Col>
+          </Row>
+          <Row>
+            <Col sm={{ span: 4, offset: 1 }}>
+              <TransactionList />
+            </Col>
+            <Col sm={{ span: 5, offset: 1 }}>
+              <Row>
+                <Col sm={{ span: 12 }}>
+                  <h5>My wallets</h5>
+                  <WalletList />
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+        </Col>
+      </Row>
     );
   }
 }

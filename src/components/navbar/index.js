@@ -17,25 +17,15 @@ class Navbar extends Component {
   };
   render() {
     return (
-      <Nav className="menu-navbar" activeKey="/dashboard">
+      <Nav className="flex-column" activeKey="/dashboard">
         <Nav.Item>
           <Link to={"/dashboard"} className="navBarLink">
-            Dashboard
-          </Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Link to={"/transactions"} className="navBarLink">
-            Transactions
-          </Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Link to={"/budget"} className="navBarLink">
-            Budget
+            <i className="fas fa-gamepad" />
           </Link>
         </Nav.Item>
         <Nav.Item>
           <Link to={"/statistic"} className="navBarLink">
-            Statistic
+            <i className="fas fa-chart-line" />
           </Link>
         </Nav.Item>
         <Nav.Item>

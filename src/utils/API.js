@@ -42,5 +42,8 @@ export default {
   },
   removeCategory: function(id) {
     return axios.delete(API_URL + "categories/" + id);
+  },
+  getSummary: function() {
+    return axios.get(API_URL + "summary");
   }
 };

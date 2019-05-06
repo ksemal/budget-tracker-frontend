@@ -48,8 +48,9 @@ class TransactionList extends Component {
     return (
       <div>
         <h5>{this.state.title}</h5>
-        <ButtonGroup>
+        <ButtonGroup className="transaction-menu">
           <Button
+            className="button_tr"
             onClick={() => {
               this.props.getTransactions();
               this.setState({ title: "All the transactions" });
@@ -58,6 +59,7 @@ class TransactionList extends Component {
             All
           </Button>
           <Button
+            className="button_tr"
             onClick={() => {
               this.props.getTransactions({ last: 20 });
               this.setState({ title: "Here are your last 20 transactions" });
@@ -66,6 +68,7 @@ class TransactionList extends Component {
             Last 20
           </Button>
           <Button
+            className="button_tr"
             onClick={() => {
               this.props.getTransactions({ daterange: "week" });
               this.setState({ title: "Transactions for this week" });
@@ -74,6 +77,7 @@ class TransactionList extends Component {
             This Week
           </Button>
           <Button
+            className="button_tr"
             onClick={() => {
               this.props.getTransactions({ daterange: "month" });
               this.setState({ title: "Transactions for this month" });
@@ -82,6 +86,7 @@ class TransactionList extends Component {
             This Month
           </Button>
           <DropdownButton
+            className="button_tr"
             as={ButtonGroup}
             title="Choose a month"
             id="bg-nested-dropdown"
