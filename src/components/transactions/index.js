@@ -28,7 +28,7 @@ const months = [
 class TransactionList extends Component {
   state = {
     showNotes: "",
-    title: "Here are your last 20 transactions"
+    title: ""
   };
   componentDidUpdate() {}
   componentDidMount() {
@@ -86,7 +86,6 @@ class TransactionList extends Component {
             This Month
           </Button>
           <DropdownButton
-            className="button_tr"
             as={ButtonGroup}
             title="Choose a month"
             id="bg-nested-dropdown"
@@ -105,6 +104,7 @@ class TransactionList extends Component {
             ))}
           </DropdownButton>
         </ButtonGroup>
+
         {this.props.allTransactions
           ? this.props.allTransactions.map(item => {
               return (

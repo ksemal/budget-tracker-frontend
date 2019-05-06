@@ -7,8 +7,9 @@
   flex-wrap: wrap;
 }
 .cardWrapper > div {
-  width: 31%;
+  width: 45%;
   margin: 5px;
+  min-height: 150px;
 }
 .fa-wallet {
   font-size: 20px;

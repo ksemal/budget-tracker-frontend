@@ -26,10 +26,10 @@ class Dashboard extends Component {
             </Col>
           </Row>
           <Row>
-            <Col sm={{ span: 4, offset: 1 }}>
+            <Col sm={{ span: 5, offset: 1 }}>
               <TransactionList />
             </Col>
-            <Col sm={{ span: 5, offset: 1 }}>
+            <Col sm={{ span: 4, offset: 1 }}>
               <Row>
                 <Col sm={{ span: 12 }}>
                   <h5>My wallets</h5>

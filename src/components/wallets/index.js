@@ -52,27 +52,7 @@ class WalletList extends Component {
                   bg={this.state.wallet_id === wallet.id ? "info" : ""}
                 >
                   <Card.Body>
-                    <Card.Title>
-                      {wallet.name}
-                      <small className="text-muted">
-                        <OverlayTrigger
-                          key="tooltip"
-                          placement="right"
-                          overlay={<Tooltip>Remove the wallet</Tooltip>}
-                        >
-                          <i
-                            className="far fa-times-circle"
-                            onClick={() => {
-                              this.props.removeWallet(wallet.id);
-                              this.setState({
-                                wallet_id: null,
-                                toggleNewTransaction: false
-                              });
-                            }}
-                          />
-                        </OverlayTrigger>
-                      </small>
-                    </Card.Title>
+                    <Card.Title>{wallet.name}</Card.Title>
                     <Card.Text>Total: {wallet.total}$ </Card.Text>
                     <Card.Text>
                       <small className="text-muted">
@@ -94,6 +74,24 @@ class WalletList extends Component {
                               }}
                             />
                           </span>
+                        </OverlayTrigger>
+                      </small>
+                      <small className="text-muted">
+                        <OverlayTrigger
+                          key="tooltip"
+                          placement="right"
+                          overlay={<Tooltip>Remove the wallet</Tooltip>}
+                        >
+                          <i
+                            className="far fa-times-circle"
+                            onClick={() => {
+                              this.props.removeWallet(wallet.id);
+                              this.setState({
+                                wallet_id: null,
+                                toggleNewTransaction: false
+                              });
+                            }}
+                          />
                         </OverlayTrigger>
                       </small>
                     </Card.Text>

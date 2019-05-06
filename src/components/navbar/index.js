@@ -20,17 +20,17 @@ class Navbar extends Component {
       <Nav className="flex-column" activeKey="/dashboard">
         <Nav.Item>
           <Link to={"/dashboard"} className="navBarLink">
-            <i className="fas fa-gamepad" />
+            <i className="fas fa-gamepad menu-icon" />
           </Link>
         </Nav.Item>
         <Nav.Item>
           <Link to={"/statistic"} className="navBarLink">
-            <i className="fas fa-chart-line" />
+            <i className="fas fa-chart-line menu-icon" />
           </Link>
         </Nav.Item>
         <Nav.Item>
           <Link to={"/"} className="navBarLink" onClick={this.signOut}>
-            <i className="fas fa-sign-out-alt" />
+            <i className="fas fa-sign-out-alt menu-icon" />
           </Link>
         </Nav.Item>
       </Nav>
