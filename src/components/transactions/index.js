@@ -7,6 +7,8 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import Button from "react-bootstrap/Button";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 import "./style.css";
 
@@ -46,7 +48,7 @@ class TransactionList extends Component {
 
   render() {
     return (
-      <div>
+      <div className="transactions">
         <h5>{this.state.title}</h5>
         <ButtonGroup className="transaction-menu">
           <Button
@@ -87,7 +89,7 @@ class TransactionList extends Component {
           </Button>
           <DropdownButton
             as={ButtonGroup}
-            title="Choose a month"
+            title="By month"
             id="bg-nested-dropdown"
           >
             {months.map((month, i) => (
@@ -108,38 +110,57 @@ class TransactionList extends Component {
         {this.props.allTransactions
           ? this.props.allTransactions.map(item => {
               return (
-                <div key={item.id}>
-                  <span>
-                    <span className={item.type === "Income" ? "in" : "out"}>
-                      {item.amount}$ {item.type === "Income" ? "to" : "from"}{" "}
+                <Row className="list" key={item.id}>
+                  <Col sm={{ span: 9 }}>
+                    <div className={item.type === "Income" ? "in" : "out"}>
+                      {item.amount}${" "}
+                      {item.type === "Income" ? "added to" : "withdrawn from"}{" "}
                       {item.wallet.name} wallet{" "}
-                    </span>
-                    <span
-                      className="smallButtons"
-                      onClick={() => this.props.removeTransaction(item.id)}
-                    >
-                      <i className="far fa-times-circle" />
-                    </span>
-                    {item.notes ? (
-                      <span
-                        className="smallButtons"
-                        onClick={() => this.showNotes(item.id)}
-                      >
-                        <i className="far fa-question-circle" />
-                      </span>
-                    ) : (
-                      ""
-                    )}
-
+                    </div>
                     <p>
-                      date: {item.datetime} | Category:{" "}
-                      <Badge pill variant="info">
+                      Date: {item.datetime} | Category:{" "}
+                      <Badge
+                        pill
+                        className={
+                          item.type === "Income" ? "pill-violet" : "pill-orange"
+                        }
+                      >
                         {item.category.name}
                       </Badge>
                     </p>
-                  </span>
-                  {item.id === this.state.showNotes ? <p>{item.notes}</p> : ""}
-                </div>
+                    {item.id === this.state.showNotes ? (
+                      <p>Notes: {item.notes}</p>
+                    ) : (
+                      ""
+                    )}
+                  </Col>
+                  <Col sm={{ span: 3 }} className="tr-wrapper">
+                    {item.notes ? (
+                      <div
+                        className={
+                          item.type === "Income"
+                            ? "smallButtons violet-gr"
+                            : "smallButtons orange-gr"
+                        }
+                        onClick={() => this.showNotes(item.id)}
+                      >
+                        <i className="far fa-question-circle" />
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                    <div
+                      className={
+                        item.type === "Income"
+                          ? "smallButtons violet-gr"
+                          : "smallButtons orange-gr"
+                      }
+                      onClick={() => this.props.removeTransaction(item.id)}
+                    >
+                      <i className="far fa-times-circle" />
+                    </div>
+                  </Col>
+                </Row>
               );
             })
           : "Add your first transaction"}

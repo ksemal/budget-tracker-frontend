@@ -90,6 +90,9 @@ const getCategoriesReducer = (state = null, action) => {
   if (action.type === "REMOVE_CATEGORY") {
     return action.payload;
   }
+  if (action.type === "SET_BUDGET") {
+    return action.payload;
+  }
 
   return state;
 };

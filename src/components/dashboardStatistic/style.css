@@ -1,9 +1,10 @@
-.budget-lable {
+.budget-lable,
+.budget-lable > div {
   background-color: rgb(231, 231, 231);
   color: white;
 }
 .progress {
-  height: 50px;
+  height: 30px;
   font-size: 15px;
 }
 .legend {
@@ -14,15 +15,21 @@
 }
 .legend-wrap {
   float: left;
-  margin-right: 10px;
-}
-.budget-lable > div {
-  background-color: rgb(231, 231, 231);
-  color: white;
+  margin: 20px 10px 0 0;
 }
 .text-lable {
   float: left;
 }
 .dashboard-statistic {
   margin-bottom: 80px;
+}
+.income-lable,
+.income-lable > div {
+  background-color: #c870d8ab !important;
+  color: white;
+}
+.expense-lable,
+.expense-lable > div {
+  background-color: #fd8f679a !important;
+  color: white;
 }

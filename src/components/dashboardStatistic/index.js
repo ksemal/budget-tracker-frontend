@@ -14,15 +14,14 @@ class DashboardStatistic extends Component {
     this.props.getSummary();
   }
   render() {
-    return (
+    return this.props.summary.total ? (
       <div className="dashboard-statistic">
         <ProgressBar>
           {this.props.summary.expenditures ? (
             <ProgressBar
-              className="progress"
+              className="progress expense-lable"
               animated
               striped
-              variant="warning"
               label={this.props.summary.expenditures + "$"}
               max={this.props.summary.total}
               now={this.props.summary.expenditures}
@@ -34,10 +33,9 @@ class DashboardStatistic extends Component {
 
           {this.props.summary.income ? (
             <ProgressBar
-              className="progress"
+              className="progress income-lable"
               animated
               striped
-              variant="success"
               label={this.props.summary.income + "$"}
               max={this.props.summary.total}
               now={this.props.summary.income}
@@ -59,10 +57,9 @@ class DashboardStatistic extends Component {
         </ProgressBar>
         <span className="legend-wrap">
           <ProgressBar
-            variant="warning"
             animated
             striped
-            className="legend"
+            className="legend expense-lable"
             now={5}
             max="5"
           />
@@ -70,10 +67,9 @@ class DashboardStatistic extends Component {
         </span>
         <span className="legend-wrap">
           <ProgressBar
-            variant="success"
             animated
             striped
-            className="legend"
+            className="legend income-lable"
             now={5}
             max="5"
           />
@@ -90,6 +86,8 @@ class DashboardStatistic extends Component {
           <span className="text-lable"> - My total</span>
         </span>
       </div>
+    ) : (
+      ""
     );
   }
 }

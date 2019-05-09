@@ -45,5 +45,9 @@ export default {
   },
   getSummary: function() {
     return axios.get(API_URL + "summary");
+  },
+  setBudget: function(data) {
+    console.log(data.category.id);
+    return axios.put(API_URL + "categories/" + data.category.id, data);
   }
 };

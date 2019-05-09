@@ -105,7 +105,32 @@ class NewTransaction extends Component {
         </div>
         <InputGroup className="mb-3">
           <InputGroup.Prepend>
-            <InputGroup.Text>$</InputGroup.Text>
+            <InputGroup.Text>
+              {this.state.amount && this.state.chosenCategory ? (
+                <i
+                  className="fas fa-coins"
+                  onClick={() => {
+                    this.props.addTransaction(
+                      this.props.wallet_id,
+                      this.state.amount,
+                      this.state.chosenCategory,
+                      this.state.notes,
+                      this.state.datetime
+                    );
+                    this.showModal();
+                    this.setState({
+                      notes: "",
+                      amount: "",
+                      chosenCategory: false
+                    });
+                  }}
+                >
+                  Add
+                </i>
+              ) : (
+                "$"
+              )}
+            </InputGroup.Text>
           </InputGroup.Prepend>
           <FormControl
             name="amount"
@@ -138,12 +163,11 @@ class NewTransaction extends Component {
                 <Badge
                   key={category.id}
                   pill
-                  variant="info"
                   onClick={() => this.chosenCategory(category.id)}
                   className={
                     this.state.chosenCategory === category.id
                       ? "clickedCategory"
-                      : ""
+                      : "category-badge"
                   }
                 >
                   {category.name}
@@ -158,7 +182,11 @@ class NewTransaction extends Component {
                 </Badge>
               ))
             : ""}
-          <Badge pill variant="info" onClick={this.showNewCategoryInput}>
+          <Badge
+            pill
+            onClick={this.showNewCategoryInput}
+            className="category-badge"
+          >
             {this.state.showCategoryInput ? (
               <form onSubmit={this.addNewCategory}>
                 <input
@@ -174,28 +202,6 @@ class NewTransaction extends Component {
             )}
           </Badge>
         </div>
-        {this.state.amount && this.state.chosenCategory ? (
-          <i
-            className="fas fa-coins"
-            onClick={() => {
-              this.props.addTransaction(
-                this.props.wallet_id,
-                this.state.amount,
-                this.state.chosenCategory,
-                this.state.notes,
-                this.state.datetime
-              );
-              this.showModal();
-              this.setState({
-                notes: "",
-                amount: "",
-                chosenCategory: false
-              });
-            }}
-          />
-        ) : (
-          ""
-        )}
 
         {
           <Modal

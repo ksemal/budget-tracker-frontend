@@ -1,0 +1,7 @@
+.budget-list {
+  text-align: right;
+  list-style-type: none;
+}
+.bar-statistic {
+  height: 25px !important;
+}

@@ -1,22 +1,38 @@
 .smallButtons {
   float: right;
+  text-align: center;
+  border-radius: 10em;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  width: 35px;
+  height: 35px;
+  color: white;
+  margin-left: 5px;
+}
+.smallButtons > i {
+  float: none;
+  top: 15%;
+  position: relative;
+}
+.orange-gr {
+  background: linear-gradient(40deg, #ffd86f, #fc6262) !important;
+}
+.violet-gr {
+  background: linear-gradient(40deg, #ff6ec4, #7873f5) !important;
 }
 .in {
-  color: rgb(93, 182, 155);
+  color: #a371e5;
 }
 .out {
-  color: rgb(221, 147, 50);
+  color: #febc6c;
 }
 .button_tr {
   width: 100%;
   white-space: nowrap;
-  overflow: hidden;
-  min-width: 100px;
 }
 .transaction-menu > button,
 .dropdown-toggle {
   background: white;
-  color: #ffc56f;
+  color: rgba(128, 128, 128, 0.658);
   border: none;
 }
 .button_tr:hover,
@@ -27,4 +43,19 @@
 .button_tr:focus,
 #bg-nested-dropdown:focus {
   box-shadow: 0 0 0 0.2rem rgba(255, 186, 38, 0.5);
+}
+.list {
+  border-top: 1px solid rgba(128, 128, 128, 0.233);
+  padding: 20px 20px 0 20px;
+}
+.tr-wrapper {
+  display: flex;
+}
+.pill-orange {
+  background: linear-gradient(40deg, #ffd86f, #fc6262) !important;
+  color: white;
+}
+.pill-violet {
+  background: linear-gradient(40deg, #ff6ec4, #7873f5) !important;
+  color: white;
 }

@@ -3,10 +3,10 @@ import { Router, Route, Switch } from "react-router-dom";
 import history from "../history";
 import { connect } from "react-redux";
 
-import Statistic from "./pages/statistic.js";
-import Dashboard from "./pages/dashboard.js";
+import Statistic from "../pages/statistic.js";
+import Dashboard from "../pages/dashboard.js";
 
-import LandingPage from "./pages/landing.js";
+import LandingPage from "../pages/landing.js";
 
 class App extends Component {
   render() {

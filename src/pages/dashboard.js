@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import Navbar from "../navbar";
+import Navbar from "../components/navbar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import TransactionList from "../transactions";
-import WalletList from "../wallets";
-import DashboardStatistic from "../dashboardStatistic";
+import TransactionList from "../components/transactions";
+import WalletList from "../components/wallets";
+import DashboardStatistic from "../components/dashboardStatistic";
 
 import "./style.css";
 
@@ -15,7 +15,7 @@ class Dashboard extends Component {
   render() {
     return (
       <Row className="wrapper">
-        <Col sm={{ span: 1 }}>
+        <Col className="wr-inside" sm={{ span: 1 }}>
           <Navbar />
         </Col>
         <Col sm={{ span: 11 }}>

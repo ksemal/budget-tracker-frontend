@@ -81,6 +81,7 @@ export const getTransactions = date => {
         dispatch({ type: "GET_TRANSACTIONS", payload: response.data });
       },
       err => {
+        console.log(err);
         dispatch({ type: "GET_TRANSACTIONS", payload: err });
       }
     );
@@ -275,6 +276,28 @@ export const getSummary = () => {
       },
       err => {
         dispatch({ type: "GET_SUMMARY_ERR", payload: err });
+      }
+    );
+  };
+};
+
+// Budget actions
+export const setBudget = (budget, id) => {
+  return function(dispatch, getState) {
+    const budget_obj = {
+      category: {
+        budget: budget,
+        id: id
+      }
+    };
+    API.setBudget(budget_obj).then(
+      budget => {
+        API.getCategories().then(response => {
+          dispatch({ type: "GET_CATEGORIES", payload: response.data });
+        });
+      },
+      err => {
+        dispatch({ type: "SET_BUDGET_ERR", payload: err });
       }
     );
   };

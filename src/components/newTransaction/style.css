@@ -1,9 +1,26 @@
 .newTransaction {
   margin: 3rem 0;
+  border: 1px solid rgba(128, 128, 128, 0.253);
+  border-radius: 2px;
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+  padding: 1.25rem;
 }
 .clickedCategory {
-  background-color: grey;
+  background-color: #fd8f67b6;
+  color: white;
+}
+.category-badge {
+  color: rgb(221, 156, 156);
+  background-color: #ffd1c173;
+  border: 1px solid #fd8f67b6;
 }
 #switch {
   width: 30px;
+}
+.fa-coins {
+  color: #fd8f67b6;
+  font-size: 18px;
+}
+.fa-coins:hover {
+  color: #86685dfb;
 }
