@@ -12,6 +12,7 @@ import DashboardStatistic from "../components/dashboardStatistic";
 import "./style.css";
 
 class Dashboard extends Component {
+  componentDidMount() {}
   render() {
     return (
       <Row className="wrapper">

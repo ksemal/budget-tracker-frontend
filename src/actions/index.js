@@ -1,6 +1,6 @@
 import API from "../utils/API";
 import history from "../history";
-
+import setupHeaders from "../utils/config";
 // Landing Page Actions
 export const handleSignInUpInput = (name, value) => {
   return {
@@ -50,8 +50,9 @@ export const handleSignInSubmit = () => {
     };
     API.checkUser(data).then(
       response => {
+        localStorage.setItem("TOKEN", response.data.jwt);
+        setupHeaders();
         dispatch({ type: "CHECK_USER", payload: response.data.jwt });
-        history.push("/dashboard");
       },
       err => {
         console.log(err.response.data.error);
@@ -65,7 +66,7 @@ export const handleSignInSubmit = () => {
 };
 
 export const signOut = state => {
-  console.log(state);
+  setupHeaders();
   return {
     type: "CLEAR_TOKEN",
     payload: ""

@@ -2,6 +2,7 @@
 .budget-lable > div {
   background-color: rgb(231, 231, 231);
   color: white;
+  min-width: 40px;
 }
 .progress {
   height: 30px;
@@ -27,9 +28,11 @@
 .income-lable > div {
   background-color: #c870d8ab !important;
   color: white;
+  min-width: 40px;
 }
 .expense-lable,
 .expense-lable > div {
-  background-color: #fd8f679a !important;
+  background-color: #feaa6a !important;
   color: white;
+  min-width: 40px;
 }
