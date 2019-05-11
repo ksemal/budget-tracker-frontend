@@ -106,8 +106,21 @@ const confirmationReducer = (state = null, action) => {
 
 // Statistic reducers
 
-const statisticReducer = (state = "hey", action) => {
+const summaryReducer = (state = "", action) => {
   if (action.type === "GET_SUMMARY") {
+    return action.payload;
+  }
+  return state;
+};
+
+const statisticReducer = (state = "", action) => {
+  if (action.type === "GET_STATISTIC") {
+    return action.payload;
+  }
+  return state;
+};
+const budgetExpensesReducer = (state = "", action) => {
+  if (action.type === "GET_BUDGET_EXPENSES") {
     return action.payload;
   }
   return state;
@@ -121,5 +134,7 @@ export default combineReducers({
   wallets: getWalletsReducer,
   categories: getCategoriesReducer,
   transactionAdded: confirmationReducer,
-  summary: statisticReducer
+  summary: summaryReducer,
+  statistic: statisticReducer,
+  budgetExpenses: budgetExpensesReducer
 });

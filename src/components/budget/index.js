@@ -8,7 +8,7 @@ import FormControl from "react-bootstrap/FormControl";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Button from "react-bootstrap/Button";
 
-import { getCategories, setBudget } from "../../actions";
+import { getCategories, setBudget, getBudgetExpenses } from "../../actions";
 
 import "./style.css";
 
@@ -16,6 +16,7 @@ class Budget extends Component {
   state = {};
   componentDidMount() {
     this.props.getCategories();
+    this.props.getBudgetExpenses();
   }
 
   handleInput = event => {
@@ -33,19 +34,15 @@ class Budget extends Component {
   };
 
   render() {
-    console.log(this.props.categories);
     return (
       <Row>
         <Col sm={{ span: 10 }}>
           <ul className="budget-list">
-            {this.props.categories
+            {this.props.categories && this.props.budgetExpenses
               ? this.props.categories.map(category => (
                   <li key={category.id}>
                     <Row>
-                      <Col sm={{ span: 2 }}>
-                        {category.name}
-                        {category.budget ? " | Budget:" + category.budget : ""}
-                      </Col>
+                      <Col sm={{ span: 2 }}>{category.name}</Col>
                       <Col sm={{ span: 3 }}>
                         <InputGroup className="mb-3">
                           <FormControl
@@ -67,24 +64,66 @@ class Budget extends Component {
                       </Col>
                       <Col sm={{ span: 7 }}>
                         {category.budget ? (
-                          <ProgressBar
-                            animated
-                            striped
-                            className="bar-statistic"
-                            label={category.budget + "$"}
-                            max="1000"
-                            now={category.budget}
-                            key={1}
-                          />
+                          <Row>
+                            <Col sm={{ span: 10 }}>
+                              <ProgressBar
+                                animated
+                                striped
+                                className="bar-statistic budget-bar"
+                                label={
+                                  this.props.budgetExpenses[category.name]
+                                    ? this.props.budgetExpenses[category.name] *
+                                        -1 +
+                                      "$"
+                                    : "0"
+                                }
+                                max={category.budget}
+                                now={
+                                  this.props.budgetExpenses[category.name] ||
+                                  "0"
+                                }
+                                key={1}
+                              />
+                            </Col>
+                            <Col sm={{ span: 2 }}>
+                              <div>
+                                {category.budget
+                                  ? "Budget:" + category.budget
+                                  : ""}
+                              </div>
+                            </Col>
+                          </Row>
                         ) : (
-                          ""
+                          <p>Set your budget for this category</p>
                         )}
                       </Col>
                     </Row>
                   </li>
                 ))
-              : ""}
+              : "Add your first transaction to set up a budget by category"}
           </ul>
+          <div className="wr-budget-legend">
+            <span className="legend-wrap">
+              <ProgressBar
+                animated
+                striped
+                className="legend expense-lable"
+                now={5}
+                max="5"
+              />
+              <span> - My total expenses</span>
+            </span>
+            <span className="legend-wrap">
+              <ProgressBar
+                animated
+                striped
+                className="legend income-lable"
+                now={5}
+                max="5"
+              />
+              <span> - My total income</span>
+            </span>
+          </div>
         </Col>
       </Row>
     );
@@ -96,7 +135,8 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = {
   getCategories,
-  setBudget
+  setBudget,
+  getBudgetExpenses
 };
 
 export default connect(

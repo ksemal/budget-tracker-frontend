@@ -61,13 +61,12 @@ class WalletList extends Component {
                     <Card.Text>Total: {wallet.total}$ </Card.Text>
                     <Card.Text className="smbutton-wr">
                       <OverlayTrigger
-                        key="tooltip"
                         placement="right"
                         overlay={
                           <Tooltip id="newWallet">Add new transaction</Tooltip>
                         }
                       >
-                        <div className="smbutton-wr-orange">
+                        <span className="smbutton-wr-orange">
                           <i
                             className="fas fa-money-check-alt"
                             onClick={() => {
@@ -75,15 +74,14 @@ class WalletList extends Component {
                               this.openNewTransactionForm(wallet.id);
                             }}
                           />
-                        </div>
+                        </span>
                       </OverlayTrigger>
 
                       <OverlayTrigger
-                        key="tooltip"
                         placement="right"
                         overlay={<Tooltip>Remove the wallet</Tooltip>}
                       >
-                        <div className="smbutton-wr-violet">
+                        <span className="smbutton-wr-violet">
                           <i
                             className="remove-wallet fas fa-backspace"
                             onClick={() => {
@@ -94,7 +92,7 @@ class WalletList extends Component {
                               });
                             }}
                           />
-                        </div>
+                        </span>
                       </OverlayTrigger>
                     </Card.Text>
                   </Card.Body>
@@ -109,7 +107,6 @@ class WalletList extends Component {
                 {this.state.wallet_name && this.state.wallet_total ? (
                   <OverlayTrigger
                     className="newWallet"
-                    key="tooltip"
                     placement="right"
                     overlay={<Tooltip id="newWallet">Add a wallet</Tooltip>}
                   >

@@ -5,3 +5,10 @@
 .bar-statistic {
   height: 25px !important;
 }
+.wr-budget-legend {
+  float: right;
+}
+.budget-bar > div {
+  background-color: #c870d8ab !important;
+  color: white;
+}

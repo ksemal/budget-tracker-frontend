@@ -40,22 +40,25 @@ class LandingPage extends Component {
       <div>
         <Row className="wrapper">
           <Col sm={{ span: 12 }} className="wr-inside">
+            <h1 id="logo">ExpenseJar</h1>
             <CarouselComponent />
           </Col>
         </Row>
-        <Row>
-          <Col sm={{ span: 4, offset: 1 }}>
-            <p>
+        <Row className="wrapper">
+          <Col sm={{ span: 3, offset: 1 }}>
+            <p className="landing-right-text">
               This app will help you manage your finances and see the statistic
             </p>
+            <i className="fas fa-piggy-bank" />
           </Col>
-          <Col sm={{ span: 4, offset: 1 }}>
-            <Tabs defaultActiveKey="SignIn">
+          <Col className="landing-form" sm={{ span: 4, offset: 1 }}>
+            <Tabs className="landing-tab" defaultActiveKey="SignIn">
               <Tab eventKey="SignUp" title="Sign Up">
                 <Form onSubmit={this.handleSignUpSubmit}>
                   <Form.Group controlId="formSignUpEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control
+                      className="input"
                       type="email"
                       name="email_signup"
                       onChange={this.handleInputChange}
@@ -84,7 +87,7 @@ class LandingPage extends Component {
                   </Form.Group>
                   <p> {this.props.signError ? this.props.signError : ""}</p>
 
-                  <Button variant="primary" type="submit">
+                  <Button type="submit" className="signin-signup">
                     Create new account
                   </Button>
                 </Form>
@@ -115,7 +118,7 @@ class LandingPage extends Component {
                     />
                   </Form.Group>
                   <p> {this.props.signError ? this.props.signError : ""}</p>
-                  <Button variant="primary" type="submit">
+                  <Button className="signin-signup" type="submit">
                     Sign In
                   </Button>
                 </Form>

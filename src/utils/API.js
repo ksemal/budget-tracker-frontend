@@ -47,7 +47,12 @@ export default {
     return axios.get(API_URL + "summary");
   },
   setBudget: function(data) {
-    console.log(data.category.id);
     return axios.put(API_URL + "categories/" + data.category.id, data);
+  },
+  getStatistic: function() {
+    return axios.get(API_URL + "statistics");
+  },
+  getBudgetExpenses: function() {
+    return axios.get(API_URL + "budgets");
   }
 };
