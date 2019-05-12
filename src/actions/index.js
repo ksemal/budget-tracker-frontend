@@ -1,5 +1,4 @@
 import API from "../utils/API";
-import history from "../history";
 import setupHeaders from "../utils/config";
 // Landing Page Actions
 export const handleSignInUpInput = (name, value) => {
@@ -24,13 +23,13 @@ export const handleSignUpSubmit = () => {
     };
     API.createUser(data).then(
       response => {
-        dispatch({ type: "CREATE_USER", payload: response.data.jwt });
-        history.push("/dashboard");
+        localStorage.setItem("TOKEN", response.data.token);
+        setupHeaders();
+        dispatch({ type: "CREATE_USER", payload: response.data.token });
       },
       err => {
-        console.log(err.response.data.error);
         dispatch({
-          type: "SIGN_USER_ERR",
+          type: "SIGN_UP_USER_ERR",
           payload: err.response.data.error
         });
       }
@@ -55,11 +54,12 @@ export const handleSignInSubmit = () => {
         dispatch({ type: "CHECK_USER", payload: response.data.jwt });
       },
       err => {
-        console.log(err.response.data.error);
-        dispatch({
-          type: "SIGN_USER_ERR",
-          payload: err.response.data.error
-        });
+        if (err) {
+          dispatch({
+            type: "SIGN_IN_USER_ERR",
+            payload: "Ooops! Check your username and password"
+          });
+        }
       }
     );
   };

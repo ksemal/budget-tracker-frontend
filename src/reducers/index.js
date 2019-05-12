@@ -21,15 +21,21 @@ const createCheckUserReducer = (state = null, action) => {
   return state;
 };
 
-const signUserErrorReducer = (state = null, action) => {
-  if (action.type === "SIGN_USER_ERR") {
+const signInUserErrorReducer = (state = null, action) => {
+  if (action.type === "SIGN_IN_USER_ERR") {
+    return action.payload;
+  }
+  return state;
+};
+const signUpUserErrorReducer = (state = null, action) => {
+  if (action.type === "SIGN_UP_USER_ERR") {
     return action.payload;
   }
   return state;
 };
 // Transactions reducers
 
-const getTransactionsReducer = (state = null, action) => {
+const getTransactionsReducer = (state = [], action) => {
   if (action.type === "GET_TRANSACTIONS") {
     return action.payload;
   }
@@ -56,7 +62,7 @@ const getWalletsReducer = (state = null, action) => {
 };
 
 // Categories reducers
-const getCategoriesReducer = (state = null, action) => {
+const getCategoriesReducer = (state = [], action) => {
   if (action.type === "GET_CATEGORIES") {
     return action.payload;
   }
@@ -112,7 +118,8 @@ export default combineReducers({
   allTransactions: getTransactionsReducer,
   userCredentials: signInUpInputReducer,
   userToken: createCheckUserReducer,
-  signError: signUserErrorReducer,
+  signInError: signInUserErrorReducer,
+  signUpError: signUpUserErrorReducer,
   wallets: getWalletsReducer,
   categories: getCategoriesReducer,
   transactionAdded: confirmationReducer,

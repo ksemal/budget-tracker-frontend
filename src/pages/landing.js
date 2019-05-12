@@ -84,7 +84,10 @@ class LandingPage extends Component {
                       autoComplete="on"
                     />
                   </Form.Group>
-                  <p> {this.props.signError ? this.props.signError : ""}</p>
+                  <p className="sign-error">
+                    {" "}
+                    {this.props.signUpError ? this.props.signUpError : ""}
+                  </p>
 
                   <Button type="submit" className="signin-signup">
                     Create new account
@@ -116,7 +119,10 @@ class LandingPage extends Component {
                       autoComplete="on"
                     />
                   </Form.Group>
-                  <p> {this.props.signError ? this.props.signError : ""}</p>
+                  <p className="sign-error">
+                    {" "}
+                    {this.props.signInError ? this.props.signInError : ""}
+                  </p>
                   <Button className="signin-signup" type="submit">
                     Sign In
                   </Button>

@@ -67,3 +67,7 @@
 .transactions {
   margin-bottom: 50px;
 }
+.muted {
+  color: rgba(128, 128, 128, 0.555);
+  text-align: center;
+}

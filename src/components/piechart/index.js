@@ -213,6 +213,13 @@ class PieChart extends Component {
             )}
           </Col>
         </Row>
+        {!this.props.statisticIncome && !this.props.statisticExpenses ? (
+          <p className="muted">
+            Add your first transaction to see statistic by categorie
+          </p>
+        ) : (
+          ""
+        )}
       </div>
     );
   }
