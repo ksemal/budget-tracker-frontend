@@ -1,7 +1,11 @@
 import axios from "axios";
 
 import setupHeaders from "./config";
-const API_URL = process.env.API_URL || "http://localhost:3001/api/";
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? "http://api.ksemal.com/api/"
+    : "http://localhost:3001/api/";
+
 axios.defaults.baseURL = API_URL;
 
 setupHeaders();

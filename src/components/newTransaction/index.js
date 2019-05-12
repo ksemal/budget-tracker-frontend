@@ -5,6 +5,8 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Badge from "react-bootstrap/Badge";
 import Modal from "react-bootstrap/Modal";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
 
 import {
   getCategories,
@@ -166,26 +168,34 @@ class NewTransaction extends Component {
           <InputGroup.Prepend>
             <InputGroup.Text>
               {this.state.amount && this.state.chosenCategory ? (
-                <i
-                  className="fas fa-coins"
-                  onClick={() => {
-                    this.props.addTransaction(
-                      this.props.wallet_id,
-                      this.state.amount,
-                      this.state.chosenCategory,
-                      this.state.notes,
-                      this.state.datetime
-                    );
-                    this.showModal();
-                    this.setState({
-                      notes: "",
-                      amount: "",
-                      chosenCategory: false
-                    });
-                  }}
+                <OverlayTrigger
+                  className="newWallet"
+                  placement="right"
+                  overlay={
+                    <Tooltip id="newTransaction">Add a transaction</Tooltip>
+                  }
                 >
-                  +
-                </i>
+                  <i
+                    className="fas fa-coins"
+                    onClick={() => {
+                      this.props.addTransaction(
+                        this.props.wallet_id,
+                        this.state.amount,
+                        this.state.chosenCategory,
+                        this.state.notes,
+                        this.state.datetime
+                      );
+                      this.showModal();
+                      this.setState({
+                        notes: "",
+                        amount: "",
+                        chosenCategory: false
+                      });
+                    }}
+                  >
+                    +
+                  </i>
+                </OverlayTrigger>
               ) : (
                 "$"
               )}
