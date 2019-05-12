@@ -26,6 +26,24 @@ This Application uses React Redux to share one state between components.
 
 ![screenshot](screenshots/screencapture_0.png)
 
+---
+
 ![screenshot](screenshots/screencapture_1.png)
 
+---
+
 ![screenshot](screenshots/screencapture_2.png)
+
+---
+
+Mobile
+
+![screenshot](screenshots/screencapture_5.png)
+
+---
+
+![screenshot](screenshots/screencapture_3.png)
+
+---
+
+![screenshot](screenshots/screencapture_4.png)
