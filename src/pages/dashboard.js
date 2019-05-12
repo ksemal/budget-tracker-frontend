@@ -22,7 +22,7 @@ class Dashboard extends Component {
         <Col sm={{ span: 11 }}>
           <Row>
             <Col sm={{ span: 10, offset: 1 }}>
-              <h1>Dashboard</h1>
+              <h1 className="page-title">Dashboard</h1>
               <DashboardStatistic />
             </Col>
           </Row>
@@ -33,7 +33,7 @@ class Dashboard extends Component {
             <Col sm={{ span: 4, offset: 1 }}>
               <Row>
                 <Col sm={{ span: 12 }}>
-                  <h5>My wallets</h5>
+                  <h5 className="card-title">My wallets</h5>
                   <WalletList />
                 </Col>
               </Row>

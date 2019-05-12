@@ -1,6 +1,8 @@
 .budget-list {
   text-align: right;
   list-style-type: none;
+  max-height: 400px;
+  overflow: scroll;
 }
 .bar-statistic {
   height: 25px !important;
@@ -11,4 +13,32 @@
 .budget-bar > div {
   background-color: #c870d8ab !important;
   color: white;
+}
+.template-lable {
+  padding: 15px;
+  float: left;
+  color: rgba(128, 128, 128, 0.171);
+}
+.set-btn {
+  border: none;
+  border-bottom: 1px solid #a371e5;
+  border-radius: 0;
+}
+.set-btn:hover {
+  background-color: #a371e5;
+  color: white;
+}
+.span-cat {
+  color: #c870d84d;
+  text-decoration: underline;
+}
+.budget-note > div {
+  float: left;
+  color: rgba(128, 128, 128, 0.507);
+}
+.budget-note > div > span {
+  color: #a371e5;
+  margin-right: 5px;
+  font-weight: 1000;
+  font-size: 18px;
 }

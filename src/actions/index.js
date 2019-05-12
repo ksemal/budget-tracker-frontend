@@ -282,12 +282,57 @@ export const getSummary = () => {
   };
 };
 
-export const getStatistic = () => {
+export const getStatistic = date => {
   return function(dispatch, getState) {
-    API.getStatistic().then(
+    API.getStatistic(date).then(
       statistic => {
         console.log(statistic.data);
-        dispatch({ type: "GET_STATISTIC", payload: statistic.data });
+        if (
+          statistic.data.expenditures.length &&
+          statistic.data.income.length
+        ) {
+          dispatch({
+            type: "GET_STATISTIC_EXPENSES",
+            payload: statistic.data.expenditures
+          });
+          dispatch({
+            type: "GET_STATISTIC_INCOME",
+            payload: statistic.data.income
+          });
+        } else if (
+          !statistic.data.expenditures.length &&
+          statistic.data.income.length
+        ) {
+          dispatch({
+            type: "GET_STATISTIC_EXPENSES",
+            payload: ""
+          });
+          dispatch({
+            type: "GET_STATISTIC_INCOME",
+            payload: statistic.data.income
+          });
+        } else if (
+          statistic.data.expenditures.length &&
+          !statistic.data.income.length
+        ) {
+          dispatch({
+            type: "GET_STATISTIC_EXPENSES",
+            payload: statistic.data.expenditures
+          });
+          dispatch({
+            type: "GET_STATISTIC_INCOME",
+            payload: ""
+          });
+        } else {
+          dispatch({
+            type: "GET_STATISTIC_EXPENSES",
+            payload: ""
+          });
+          dispatch({
+            type: "GET_STATISTIC_INCOME",
+            payload: ""
+          });
+        }
       },
       err => {
         dispatch({ type: "GET_STATISTIC_ERR", payload: err });

@@ -1,29 +1,5 @@
 import { combineReducers } from "redux";
 
-// const transactionsReducer = () => {
-//   return [
-//     {
-//       name: "grocery",
-//       sum: "100$"
-//     },
-//     {
-//       name: "medical",
-//       sum: "10$"
-//     },
-//     {
-//       name: "gas",
-//       sum: "150$"
-//     }
-//   ];
-// };
-
-// const selectedTransactionReducer = (selectedTransaction = {}, action) => {
-//   if (action.type === "SELECT_TRANSACTION") {
-//     return action.payload;
-//   }
-//   return selectedTransaction;
-// };
-
 // Landing Page Reducers
 const signInUpInputReducer = (state = null, action) => {
   if (action.type === "UPDATE_SIGNIN/UP_INPUT") {
@@ -113,8 +89,14 @@ const summaryReducer = (state = "", action) => {
   return state;
 };
 
-const statisticReducer = (state = "", action) => {
-  if (action.type === "GET_STATISTIC") {
+const statisticIncomeReducer = (state = "", action) => {
+  if (action.type === "GET_STATISTIC_INCOME") {
+    return action.payload;
+  }
+  return state;
+};
+const statisticExpensesReducer = (state = "", action) => {
+  if (action.type === "GET_STATISTIC_EXPENSES") {
     return action.payload;
   }
   return state;
@@ -135,6 +117,7 @@ export default combineReducers({
   categories: getCategoriesReducer,
   transactionAdded: confirmationReducer,
   summary: summaryReducer,
-  statistic: statisticReducer,
+  statisticIncome: statisticIncomeReducer,
+  statisticExpenses: statisticExpensesReducer,
   budgetExpenses: budgetExpensesReducer
 });

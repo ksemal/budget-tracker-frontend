@@ -58,7 +58,9 @@ class WalletList extends Component {
                 >
                   <Card.Body>
                     <Card.Title>{wallet.name}</Card.Title>
-                    <Card.Text>Total: {wallet.total}$ </Card.Text>
+                    <Card.Text>
+                      Total: <span className="out">{wallet.total}$ </span>
+                    </Card.Text>
                     <Card.Text className="smbutton-wr">
                       <OverlayTrigger
                         placement="right"
@@ -102,8 +104,7 @@ class WalletList extends Component {
           <Card bg="light" className="wallet add-wallet">
             <Card.Body>
               <Card.Title>
-                <small>Add a wallet</small>
-
+                Add a wallet
                 {this.state.wallet_name && this.state.wallet_total ? (
                   <OverlayTrigger
                     className="newWallet"

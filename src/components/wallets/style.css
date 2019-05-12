@@ -6,6 +6,7 @@
   column-count: 3;
   flex-wrap: wrap;
 }
+
 .cardWrapper > div {
   width: 45%;
   margin: 5px;
@@ -15,14 +16,18 @@
   font-size: 20px;
 }
 .fa-money-check-alt,
-.remove-wallet,
-.fa-wallet {
+.remove-wallet {
   font-size: 20px;
   text-align: center;
   position: relative;
   color: #fd8f67b6;
   top: 10%;
   float: none;
+}
+.fa-wallet {
+  color: #a37eeb;
+  float: right;
+  margin-top: 35px;
 }
 
 .smbutton-wr {
@@ -38,4 +43,8 @@
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
   color: rgba(128, 128, 128, 0.938);
   text-align: center;
+}
+.card-title {
+  font-family: "Raleway", sans-serif;
+  padding: 15px 0;
 }

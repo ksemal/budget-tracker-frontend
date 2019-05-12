@@ -16,6 +16,7 @@ class DashboardStatistic extends Component {
   render() {
     return this.props.summary.total ? (
       <div className="dashboard-statistic">
+        <h5 className="card-title">Total expenses and income in this month</h5>
         <ProgressBar>
           {this.props.summary.expenditures ? (
             <ProgressBar
@@ -63,7 +64,7 @@ class DashboardStatistic extends Component {
             now={5}
             max="5"
           />
-          <span> - My total expenses</span>
+          <span className="text-lable"> - My total expenses</span>
         </span>
         <span className="legend-wrap">
           <ProgressBar
@@ -73,7 +74,7 @@ class DashboardStatistic extends Component {
             now={5}
             max="5"
           />
-          <span> - My total income</span>
+          <span className="text-lable"> - My total income</span>
         </span>
         <span className="legend-wrap">
           <ProgressBar

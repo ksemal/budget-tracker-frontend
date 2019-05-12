@@ -15,7 +15,7 @@ class Statistic extends Component {
           <Navbar />
         </Col>
         <Col sm={{ span: 11 }}>
-          <div>Statistic</div>
+          <h1 className="page-title">Statistic</h1>
           <Budget />
           <PieChart />
         </Col>

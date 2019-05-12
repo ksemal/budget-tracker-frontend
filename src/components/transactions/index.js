@@ -106,64 +106,67 @@ class TransactionList extends Component {
             ))}
           </DropdownButton>
         </ButtonGroup>
-
-        {this.props.allTransactions
-          ? this.props.allTransactions.map(item => {
-              return (
-                <Row className="list" key={item.id}>
-                  <Col sm={{ span: 9 }}>
-                    <div className={item.type === "Income" ? "in" : "out"}>
-                      {item.amount}${" "}
-                      {item.type === "Income" ? "added to" : "withdrawn from"}{" "}
-                      {item.wallet.name} wallet{" "}
-                    </div>
-                    <p>
-                      Date: {item.datetime} | Category:{" "}
-                      <Badge
-                        pill
-                        className={
-                          item.type === "Income" ? "pill-violet" : "pill-orange"
-                        }
-                      >
-                        {item.category.name}
-                      </Badge>
-                    </p>
-                    {item.id === this.state.showNotes ? (
-                      <p>Notes: {item.notes}</p>
-                    ) : (
-                      ""
-                    )}
-                  </Col>
-                  <Col sm={{ span: 3 }} className="tr-wrapper">
-                    {item.notes ? (
+        <div className="list-wrapper">
+          {this.props.allTransactions
+            ? this.props.allTransactions.map(item => {
+                return (
+                  <Row className="list" key={item.id}>
+                    <Col sm={{ span: 9 }}>
+                      <div className={item.type === "Income" ? "in" : "out"}>
+                        {item.amount}${" "}
+                        {item.type === "Income" ? "added to" : "withdrawn from"}{" "}
+                        {item.wallet.name} wallet{" "}
+                      </div>
+                      <p>
+                        Date: {item.datetime} | Category:{" "}
+                        <Badge
+                          pill
+                          className={
+                            item.type === "Income"
+                              ? "pill-violet"
+                              : "pill-orange"
+                          }
+                        >
+                          {item.category.name}
+                        </Badge>
+                      </p>
+                      {item.id === this.state.showNotes ? (
+                        <p>Notes: {item.notes}</p>
+                      ) : (
+                        ""
+                      )}
+                    </Col>
+                    <Col sm={{ span: 3 }} className="tr-wrapper">
+                      {item.notes ? (
+                        <div
+                          className={
+                            item.type === "Income"
+                              ? "smallButtons violet-gr"
+                              : "smallButtons orange-gr"
+                          }
+                          onClick={() => this.showNotes(item.id)}
+                        >
+                          <i className="far fa-question-circle" />
+                        </div>
+                      ) : (
+                        ""
+                      )}
                       <div
                         className={
                           item.type === "Income"
                             ? "smallButtons violet-gr"
                             : "smallButtons orange-gr"
                         }
-                        onClick={() => this.showNotes(item.id)}
+                        onClick={() => this.props.removeTransaction(item.id)}
                       >
-                        <i className="far fa-question-circle" />
+                        <i className="far fa-times-circle" />
                       </div>
-                    ) : (
-                      ""
-                    )}
-                    <div
-                      className={
-                        item.type === "Income"
-                          ? "smallButtons violet-gr"
-                          : "smallButtons orange-gr"
-                      }
-                      onClick={() => this.props.removeTransaction(item.id)}
-                    >
-                      <i className="far fa-times-circle" />
-                    </div>
-                  </Col>
-                </Row>
-              );
-            })
-          : "Add your first transaction"}
+                    </Col>
+                  </Row>
+                );
+              })
+            : "Add your first transaction"}
+        </div>
       </div>
     );
   }

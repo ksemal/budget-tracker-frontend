@@ -89,9 +89,9 @@ class NewTransaction extends Component {
   render() {
     return (
       <div className="newTransaction">
-        <h5>Add new transaction</h5>
-        <div>
-          <label>Expense</label>
+        <h5 className="card-title">Add new transaction</h5>
+        <div className="mb-3">
+          <label className="label-new-tr">Expense</label>
           <input
             type="range"
             id="switch"
@@ -101,53 +101,12 @@ class NewTransaction extends Component {
             value={this.state.type}
             onChange={this.handleInput}
           />
-          <label>Income</label>
+          <label className="label-new-tr">Income</label>
         </div>
-        <InputGroup className="mb-3">
-          <InputGroup.Prepend>
-            <InputGroup.Text>
-              {this.state.amount && this.state.chosenCategory ? (
-                <i
-                  className="fas fa-coins"
-                  onClick={() => {
-                    this.props.addTransaction(
-                      this.props.wallet_id,
-                      this.state.amount,
-                      this.state.chosenCategory,
-                      this.state.notes,
-                      this.state.datetime
-                    );
-                    this.showModal();
-                    this.setState({
-                      notes: "",
-                      amount: "",
-                      chosenCategory: false
-                    });
-                  }}
-                >
-                  Add
-                </i>
-              ) : (
-                "$"
-              )}
-            </InputGroup.Text>
-          </InputGroup.Prepend>
-          <FormControl
-            name="amount"
-            placeholder="Amount"
-            onChange={this.handleInput}
-            value={this.state.amount || ""}
-          />
-          <FormControl
-            name="notes"
-            placeholder="Notes(optional)"
-            onChange={this.handleInput}
-            value={this.state.notes || ""}
-          />
-        </InputGroup>
         <div>
-          <h5>Choose date</h5>
+          <h5 className="card-title">Choose date</h5>
           <input
+            className="input-date"
             type="date"
             name="datetime"
             min="2019-01-01"
@@ -156,8 +115,8 @@ class NewTransaction extends Component {
             onChange={this.handleInput}
           />
         </div>
-        <div>
-          <h5>Choose category</h5>
+        <div className="mb-3 mt-3">
+          <h5 className="card-title">Choose category</h5>
           {this.props.categories
             ? this.props.categories.map(category => (
                 <Badge
@@ -190,6 +149,7 @@ class NewTransaction extends Component {
             {this.state.showCategoryInput ? (
               <form onSubmit={this.addNewCategory}>
                 <input
+                  className="badgeInput"
                   value={this.state.newCategory || ""}
                   name="newCategory"
                   onBlur={this.hideNewCategoryInput}
@@ -202,6 +162,48 @@ class NewTransaction extends Component {
             )}
           </Badge>
         </div>
+        <InputGroup className="mb-3 mt-3">
+          <InputGroup.Prepend>
+            <InputGroup.Text>
+              {this.state.amount && this.state.chosenCategory ? (
+                <i
+                  className="fas fa-coins"
+                  onClick={() => {
+                    this.props.addTransaction(
+                      this.props.wallet_id,
+                      this.state.amount,
+                      this.state.chosenCategory,
+                      this.state.notes,
+                      this.state.datetime
+                    );
+                    this.showModal();
+                    this.setState({
+                      notes: "",
+                      amount: "",
+                      chosenCategory: false
+                    });
+                  }}
+                >
+                  +
+                </i>
+              ) : (
+                "$"
+              )}
+            </InputGroup.Text>
+          </InputGroup.Prepend>
+          <FormControl
+            name="amount"
+            placeholder="Amount"
+            onChange={this.handleInput}
+            value={this.state.amount || ""}
+          />
+          <FormControl
+            name="notes"
+            placeholder="Notes(optional)"
+            onChange={this.handleInput}
+            value={this.state.notes || ""}
+          />
+        </InputGroup>
 
         {
           <Modal

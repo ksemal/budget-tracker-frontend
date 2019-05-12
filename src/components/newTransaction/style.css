@@ -4,23 +4,42 @@
   border-radius: 2px;
   box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
   padding: 1.25rem;
+  font-family: "Cabin", sans-serif;
 }
 .clickedCategory {
   background-color: #fd8f67b6;
   color: white;
 }
 .category-badge {
-  color: rgb(221, 156, 156);
-  background-color: #ffd1c173;
-  border: 1px solid #fd8f67b6;
+  color: #fead90;
+  background-color: #fff7f4;
+  border: 1px solid #fead90;
 }
 #switch {
   width: 30px;
 }
 .fa-coins {
-  color: #fd8f67b6;
+  color: #fead90;
   font-size: 18px;
 }
 .fa-coins:hover {
   color: #86685dfb;
+}
+.label-new-tr {
+  padding: 0 5px;
+}
+.badgeInput {
+  background: none;
+  border: none;
+  color: grey;
+}
+.input-group-text {
+  background: none;
+  border: none;
+  font-size: 14px;
+}
+.input-date {
+  border: none;
+  color: #a371e5;
+  border-bottom: 1px solid #a371e5;
 }

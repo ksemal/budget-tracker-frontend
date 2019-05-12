@@ -28,6 +28,7 @@
 .button_tr {
   width: 100%;
   white-space: nowrap;
+  padding: 15px;
 }
 .transaction-menu > button,
 .dropdown-toggle {
@@ -58,4 +59,11 @@
 .pill-violet {
   background: linear-gradient(40deg, #ff6ec4, #7873f5) !important;
   color: white;
+}
+.list-wrapper {
+  max-height: 750px;
+  overflow: scroll;
+}
+.transactions {
+  margin-bottom: 50px;
 }

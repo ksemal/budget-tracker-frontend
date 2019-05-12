@@ -36,13 +36,15 @@ class Budget extends Component {
   render() {
     return (
       <Row>
-        <Col sm={{ span: 10 }}>
+        <Col sm={{ span: 11, offset: 1 }}>
+          <h5 className="card-title">
+            Here you can set up a budget for different categories:
+          </h5>
           <ul className="budget-list">
             {this.props.categories && this.props.budgetExpenses
               ? this.props.categories.map(category => (
                   <li key={category.id}>
                     <Row>
-                      <Col sm={{ span: 2 }}>{category.name}</Col>
                       <Col sm={{ span: 3 }}>
                         <InputGroup className="mb-3">
                           <FormControl
@@ -54,18 +56,19 @@ class Budget extends Component {
                           />
                           <InputGroup.Append>
                             <Button
+                              className="set-btn"
                               variant="outline-secondary"
                               onClick={e => this.setBudget(e, category.id)}
                             >
-                              Set
+                              <i className="fas fa-cogs" />
                             </Button>
                           </InputGroup.Append>
                         </InputGroup>
                       </Col>
-                      <Col sm={{ span: 7 }}>
+                      <Col sm={{ span: 9 }}>
                         {category.budget ? (
                           <Row>
-                            <Col sm={{ span: 10 }}>
+                            <Col sm={{ span: 9 }}>
                               <ProgressBar
                                 animated
                                 striped
@@ -78,23 +81,29 @@ class Budget extends Component {
                                     : "0"
                                 }
                                 max={category.budget}
-                                now={
-                                  this.props.budgetExpenses[category.name] ||
-                                  "0"
-                                }
+                                now={this.props.budgetExpenses[category.name]}
                                 key={1}
                               />
                             </Col>
-                            <Col sm={{ span: 2 }}>
-                              <div>
-                                {category.budget
-                                  ? "Budget:" + category.budget
-                                  : ""}
+                            <Col sm={{ span: 3 }}>
+                              <div className="budget-note">
+                                {category.budget ? (
+                                  <div>
+                                    <span>{category.name}</span>
+                                    budget : {category.budget}
+                                  </div>
+                                ) : (
+                                  ""
+                                )}
                               </div>
                             </Col>
                           </Row>
                         ) : (
-                          <p>Set your budget for this category</p>
+                          <p className="template-lable">
+                            Set your budget for{" "}
+                            <span className="span-cat">{category.name}</span>{" "}
+                            category
+                          </p>
                         )}
                       </Col>
                     </Row>
@@ -111,7 +120,7 @@ class Budget extends Component {
                 now={5}
                 max="5"
               />
-              <span> - My total expenses</span>
+              <span className="text-lable"> - My total expenses</span>
             </span>
             <span className="legend-wrap">
               <ProgressBar
@@ -121,7 +130,7 @@ class Budget extends Component {
                 now={5}
                 max="5"
               />
-              <span> - My total income</span>
+              <span className="text-lable"> - My total income</span>
             </span>
           </div>
         </Col>

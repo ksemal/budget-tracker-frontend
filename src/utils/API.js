@@ -48,8 +48,10 @@ export default {
   setBudget: function(data) {
     return axios.put(API_URL + "categories/" + data.category.id, data);
   },
-  getStatistic: function() {
-    return axios.get(API_URL + "statistics");
+  getStatistic: function(date) {
+    return axios.get(API_URL + "statistics", {
+      params: date
+    });
   },
   getBudgetExpenses: function() {
     return axios.get(API_URL + "budgets");

@@ -39,6 +39,8 @@
   border: none !important;
   border-bottom: 1px solid #a371e5 !important;
   background: none;
+  color: rgba(128, 128, 128, 0.842);
+  border-radius: 0;
 }
 .form-control::placeholder {
   color: #a371e5 !important;
@@ -55,4 +57,12 @@
   margin-bottom: 30px;
   border-left: 1px solid rgba(128, 128, 128, 0.171);
   padding-left: 120px;
+}
+.page-title {
+  font-family: "Raleway", sans-serif;
+  text-align: center;
+  padding: 20px 0;
+  color: rgb(99, 99, 99);
+  border-bottom: 1px solid rgba(128, 128, 128, 0.171);
+  margin-bottom: 25px;
 }
