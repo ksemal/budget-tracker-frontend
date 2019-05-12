@@ -128,8 +128,6 @@ class PieChart extends Component {
       ],
       colorSet: "purpleShades"
     };
-    console.log(this.props.statisticIncome);
-    console.log(this.props.statisticExpenses);
     return (
       <div className="piechart-wr">
         <Row>

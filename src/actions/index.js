@@ -82,7 +82,6 @@ export const getTransactions = date => {
         dispatch({ type: "GET_TRANSACTIONS", payload: response.data });
       },
       err => {
-        console.log(err);
         dispatch({ type: "GET_TRANSACTIONS_ERR", payload: err });
       }
     );
@@ -243,7 +242,6 @@ export const addNewCategory = name => {
     API.addCategory(newCategory).then(
       response => {
         let updatedCategories = [...getState().categories, response.data];
-        console.log(updatedCategories);
         dispatch({ type: "ADD_CATEGORY", payload: updatedCategories });
       },
       err => {
@@ -286,7 +284,6 @@ export const getStatistic = date => {
   return function(dispatch, getState) {
     API.getStatistic(date).then(
       statistic => {
-        console.log(statistic.data);
         if (
           statistic.data.expenditures.length &&
           statistic.data.income.length

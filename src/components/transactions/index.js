@@ -47,7 +47,6 @@ class TransactionList extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className="transactions">
         <h5>{this.state.title}</h5>
