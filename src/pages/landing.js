@@ -44,13 +44,17 @@ class LandingPage extends Component {
           </Col>
         </Row>
         <Row className="wrapper">
-          <Col sm={{ span: 3, offset: 1 }}>
+          <Col md={{ span: 3, offset: 1 }} xs={{ span: 10, offset: 2 }}>
             <p className="landing-right-text">
               This app will help you manage your finances and see the statistic
             </p>
             <i className="fas fa-piggy-bank" />
           </Col>
-          <Col className="landing-form" sm={{ span: 4, offset: 1 }}>
+          <Col
+            className="landing-form"
+            md={{ span: 4, offset: 1 }}
+            xs={{ span: 10, offset: 1 }}
+          >
             <Tabs className="landing-tab" defaultActiveKey="SignIn">
               <Tab eventKey="SignUp" title="Sign Up">
                 <Form onSubmit={this.handleSignUpSubmit}>

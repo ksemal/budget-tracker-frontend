@@ -47,7 +47,7 @@
 }
 .list {
   border-top: 1px solid rgba(128, 128, 128, 0.233);
-  padding: 20px 20px 0 20px;
+  padding: 20px;
 }
 .tr-wrapper {
   display: flex;
@@ -70,4 +70,12 @@
 .muted {
   color: rgba(128, 128, 128, 0.555);
   text-align: center;
+}
+@media screen and (max-width: 640px) {
+  .transaction-menu > button,
+  .dropdown-toggle {
+    margin: 10px;
+    font-size: 14px;
+    padding: 0;
+  }
 }

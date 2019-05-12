@@ -70,3 +70,14 @@
   font-size: 14px;
   color: rgba(253, 128, 55, 0.747);
 }
+@media screen and (max-width: 640px) {
+  .landing-form {
+    padding-left: 0px;
+    border-left: none;
+  }
+  #logo {
+    font-size: 20px;
+    top: 0;
+    padding: 5px 0;
+  }
+}

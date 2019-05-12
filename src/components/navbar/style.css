@@ -1,7 +1,6 @@
 .navBarLink {
   text-decoration: none;
   position: relative;
-
   color: white;
 }
 .flex-column {
@@ -20,4 +19,13 @@
 }
 .menu-icon:hover {
   color: wheat;
+}
+@media screen and (max-width: 640px) {
+  .flex-column {
+    flex-direction: row !important;
+    min-height: 70px;
+  }
+  .nav-item {
+    width: 33.3%;
+  }
 }

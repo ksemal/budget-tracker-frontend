@@ -48,7 +48,7 @@ class Budget extends Component {
                     <Col sm={{ span: 3 }}>
                       <InputGroup className="mb-3">
                         <FormControl
-                          placeholder="Set Budget"
+                          placeholder={"Set Budget(" + category.name + ")"}
                           aria-label="Category budget"
                           onChange={this.handleInput}
                           name={category.id}

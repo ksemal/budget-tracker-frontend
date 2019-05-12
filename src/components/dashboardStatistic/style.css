@@ -39,3 +39,8 @@
   color: white;
   min-width: 40px;
 }
+@media screen and (max-width: 640px) {
+  .dashboard-statistic {
+    padding-bottom: 140px;
+  }
+}
