@@ -126,16 +126,6 @@ class Budget extends Component {
               />
               <span className="text-lable"> - My total expenses</span>
             </span>
-            <span className="legend-wrap">
-              <ProgressBar
-                animated
-                striped
-                className="legend income-lable"
-                now={5}
-                max="5"
-              />
-              <span className="text-lable"> - My total income</span>
-            </span>
           </div>
         </Col>
       </Row>
