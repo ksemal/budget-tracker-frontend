@@ -23,7 +23,10 @@ class NewTransaction extends Component {
     chosenCategory: false,
     showModal: false,
     type: "0",
-    datetime: this.getDate()
+    datetime: this.getDate(),
+    imgPreview: "",
+    image: "",
+    notes: ""
   };
 
   componentDidMount() {
@@ -88,6 +91,18 @@ class NewTransaction extends Component {
           showModal: true
         });
   };
+  showAttachment = e => {
+    let reader = new FileReader();
+    let file = e.target.files[0];
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      console.log(file);
+      this.setState({
+        imgPreview: reader.result,
+        image: file
+      });
+    };
+  };
   render() {
     return (
       <div className="newTransaction">
@@ -105,8 +120,8 @@ class NewTransaction extends Component {
           />
           <label className="label-new-tr">Income</label>
         </div>
-        <div>
-          <h5 className="card-title">Choose date</h5>
+        <div className="mb-1">
+          <h5 className="card-title">Choose date:</h5>
           <input
             className="input-date"
             type="date"
@@ -117,8 +132,33 @@ class NewTransaction extends Component {
             onChange={this.handleInput}
           />
         </div>
-        <div className="mb-3 mt-3">
-          <h5 className="card-title">Choose category</h5>
+        <div>
+          <h5 className="card-title">
+            Select a file <span className="small"> (optional) </span>:{" "}
+            <label htmlFor="select-file">
+              <i className="fas fa-cloud-upload-alt" />
+            </label>
+          </h5>
+          <input
+            id="select-file"
+            type="file"
+            name="file"
+            accept="image/png, image/jpeg"
+            onChange={this.showAttachment}
+          />
+
+          {this.state.imgPreview ? (
+            <img
+              src={this.state.imgPreview}
+              alt="preview"
+              className="preview"
+            />
+          ) : (
+            ""
+          )}
+        </div>
+        <div className="mb-3">
+          <h5 className="card-title">Choose category:</h5>
           {this.props.categories
             ? this.props.categories.map(category => (
                 <Badge
@@ -183,13 +223,16 @@ class NewTransaction extends Component {
                         this.state.amount,
                         this.state.chosenCategory,
                         this.state.notes,
-                        this.state.datetime
+                        this.state.datetime,
+                        this.state.image
                       );
                       this.showModal();
                       this.setState({
                         notes: "",
                         amount: "",
-                        chosenCategory: false
+                        chosenCategory: false,
+                        imgPreview: "",
+                        image: ""
                       });
                     }}
                   >

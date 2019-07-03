@@ -47,6 +47,7 @@ class TransactionList extends Component {
   }
 
   render() {
+    console.log(this.props.allTransactions);
     return (
       <div className="transactions">
         <h5>{this.state.title}</h5>
@@ -129,13 +130,27 @@ class TransactionList extends Component {
                       </Badge>
                     </p>
                     {item.id === this.state.showNotes ? (
-                      <p>Notes: {item.notes}</p>
+                      <div>
+                        {item.notes ? <p>Notes: {item.notes}</p> : ""}
+                        {item.image ? (
+                          <p>
+                            Attachment:{" "}
+                            <img
+                              className="receipt"
+                              src={item.image}
+                              alt="receipt"
+                            />
+                          </p>
+                        ) : (
+                          ""
+                        )}
+                      </div>
                     ) : (
                       ""
                     )}
                   </Col>
                   <Col sm={{ span: 3 }} className="tr-wrapper">
-                    {item.notes ? (
+                    {item.notes || item.image ? (
                       <div
                         className={
                           item.type === "Income"

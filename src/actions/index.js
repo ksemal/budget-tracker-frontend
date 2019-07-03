@@ -115,18 +115,32 @@ export const removeTransaction = id => {
   };
 };
 
-export const addTransaction = (wallet, amount, category, notes, datetime) => {
+export const addTransaction = (
+  wallet,
+  amount,
+  category,
+  notes,
+  datetime,
+  image
+) => {
   return function(dispatch, getState) {
-    let transaction = {
-      transaction: {
-        wallet_id: wallet,
-        amount: amount,
-        category_id: category,
-        notes: notes,
-        datetime: datetime
-      }
+    let object = {
+      wallet_id: wallet,
+      amount: amount,
+      category_id: category,
+      notes: notes,
+      datetime: datetime,
+      image: image
     };
-    API.addTransaction(transaction).then(
+
+    //creating a form to send a file
+
+    let form = new FormData();
+    for (let key in object) {
+      form.append(`transaction[${key}]`, object[key]);
+    }
+
+    API.addTransaction(form).then(
       transaction => {
         let state = [...getState().allTransactions, transaction.data];
         API.getWallets().then(

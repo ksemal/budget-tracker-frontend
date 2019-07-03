@@ -43,3 +43,23 @@
   color: #a371e5;
   border-bottom: 1px solid #a371e5;
 }
+#select-file {
+  display: none;
+}
+.fa-cloud-upload-alt {
+  color: #a371e5;
+  font-size: 20px;
+}
+.fa-cloud-upload-alt:hover {
+  cursor: pointer;
+}
+.preview {
+  width: 280px;
+  border: 3px dashed rgba(128, 128, 128, 0.3);
+  padding: 10px;
+  border-radius: 8px;
+}
+.small {
+  color: grey;
+  font-size: 15px;
+}

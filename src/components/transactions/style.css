@@ -48,6 +48,7 @@
 .list {
   border-top: 1px solid rgba(128, 128, 128, 0.233);
   padding: 20px;
+  width: 100%;
 }
 .tr-wrapper {
   display: flex;
@@ -61,7 +62,7 @@
   color: white;
 }
 .list-wrapper {
-  max-height: 750px;
+  max-height: 800px;
   overflow: scroll;
 }
 .transactions {
@@ -71,11 +72,18 @@
   color: rgba(128, 128, 128, 0.555);
   text-align: center;
 }
+.receipt {
+  width: auto;
+  max-width: 400px;
+}
 @media screen and (max-width: 640px) {
   .transaction-menu > button,
   .dropdown-toggle {
     margin: 10px;
     font-size: 14px;
     padding: 0;
+  }
+  .receipt {
+    max-width: 300px;
   }
 }

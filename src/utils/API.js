@@ -23,7 +23,11 @@ export default {
     });
   },
   addTransaction: function(transaction) {
-    return axios.post(API_URL + "transactions/", transaction);
+    return axios.post(API_URL + "transactions/", transaction, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    });
   },
   removeTransaction: function(id) {
     return axios.delete(API_URL + "transactions/" + id);
